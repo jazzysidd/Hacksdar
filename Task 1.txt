@@ -1,0 +1,31 @@
+Q:- Provide some example of config file separation for dev and prod environments.
+Ans:-
+
+A perfect configuration setup should ensure:
+:- keys can be read from file AND from environment variable
+:-secrets are kept outside committed code
+:-config is hierarchical for easier findability
+
+and you have to create config file like this 
+
+var config = {
+  production: {
+    mongo : {
+      Something: '****'
+    }
+  },
+  default: {
+    mongo : {
+      Something: '****'
+    }
+  }
+}
+
+exports.get = function get(env) {
+  return config[env] || config.default;
+}
+
+and you hae to require it in your server.js or index.js that file is where you have write port and all stuff like this 
+
+const config = require('./config/config.js').get(process.env.NODE_ENV);
+const dbconn = mongoose.createConnection(config.mongo.Something);

@@ -1,0 +1,8 @@
+Server is running on port 1100
+
+And for registring users have to make account its api is localhost http://localhost:1100/employeeRegister
+
+
+and for login user api is http://localhost:1100/employeeloginb 
+
+in all route you can find validation you can check on postman
